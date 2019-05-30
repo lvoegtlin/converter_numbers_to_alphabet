@@ -19,15 +19,13 @@ def execute_folder(args):
     for file_path in tqdm(all_files, ncols=150):
         # translate
         translation = ''
-        file_name, _ = os.path.splitext(file_path)
-        file_name = f'{int(file_name):08}'
         with open(os.path.join(root_path, file_path), mode='r') as read_file:
             for line in read_file.readlines():
                 translation += alphabet[int(line)]
         # save the file
         # remove starting and ending spaces
         translation = translation.strip()
-        with open(os.path.join(args.output_folder, file_name + '.txt'), mode='w', encoding='utf-8') as write_file:
+        with open(os.path.join(args.output_folder, file_path), mode='w', encoding='utf-8') as write_file:
             write_file.write(translation)
 
 
